@@ -20,7 +20,7 @@ x_t = np.array(range(-4, 4, 1))
 reta = 0.5*x_t+1.5
 
 plt.plot(x_t, reta)
-fig.savefig('save.png')
+fig.savefig('2b_perceptron_w_no_mistakes.png')
 t_times = range(0, 3)
 
 
