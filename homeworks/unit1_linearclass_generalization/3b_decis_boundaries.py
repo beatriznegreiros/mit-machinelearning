@@ -41,4 +41,4 @@ for index, x in enumerate(X):
     print('theta * xi + theta_0: ', np.dot(theta, x) + theta_0, 'label (yi): ', y[index])
 
 
-fig.savefig('3b_decis_boundaries.png')
+fig.savefig('figs/3b_decis_boundaries.png')
