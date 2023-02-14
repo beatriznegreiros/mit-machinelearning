@@ -1,7 +1,7 @@
 import numpy as np
 
-X = np.array([[-1, -1], [1, 0], [-1, 1.5]])
-# X = np.array([[-1, -1], [1, 0], [-1, 10]])
+# X = np.array([[-1, -1], [1, 0], [-1, 1.5]])
+X = np.array([[-1, -1], [1, 0], [-1, 10]])
 
 y = [1, -1, 1]
 
@@ -10,7 +10,7 @@ t_times = range(0, 40)
 # theta = np.array([-1, -1])
 start = 1
 
-theta = X[start]
+theta = np.array([0, 0])
 n_mistakes = 0
 
 

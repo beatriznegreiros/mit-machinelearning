@@ -28,8 +28,8 @@ if __name__ == '__main__':
     # x3 = np.array()
     t_times = range(0, 100)
 
-    # theta = np.array([-1, -1])
-    theta = np.array([1, 0])
+    theta = np.array([-1, -1])
+    # theta = np.array([1, 0])
 
     a, b, c = perceptron(X, y, theta, t_times)
     print(a, b, c)
