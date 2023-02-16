@@ -60,7 +60,10 @@ def hinge_loss_full(feature_matrix, labels, theta, theta_0):
     loss across all of the points in the feature matrix.
     """
     # Your code here
-    raise NotImplementedError
+    hinge_losses = []
+    for index, x in enumerate(feature_matrix):
+        hinge_losses.append(hinge_loss_single(feature_matrix[index], labels[index], theta, theta_0))
+    return np.mean(hinge_losses)
 
 
 def perceptron_single_step_update(
