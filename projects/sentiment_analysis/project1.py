@@ -34,7 +34,11 @@ def hinge_loss_single(feature_vector, label, theta, theta_0):
     given data point and parameters.
     """
     # Your code here
-    raise NotImplementedError
+    z = label * (np.dot(theta, feature_vector) + theta_0)
+    if z >= 1:
+        return 0
+    else:
+        return 1 - z
 
 
 def hinge_loss_full(feature_matrix, labels, theta, theta_0):
