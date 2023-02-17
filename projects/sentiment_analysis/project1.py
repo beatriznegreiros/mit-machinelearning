@@ -89,7 +89,12 @@ def perceptron_single_step_update(
     completed.
     """
     # Your code here
-    raise NotImplementedError
+    if label * (np.dot(current_theta, feature_vector) + current_theta_0) <= 0.000:
+        theta = current_theta + label * feature_vector
+        theta_0 = current_theta_0 + label
+        return theta, theta_0
+    else:
+        return current_theta, current_theta_0
 
 
 def perceptron(feature_matrix, labels, T):
