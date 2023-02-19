@@ -114,8 +114,8 @@ print(acc_train, acc_test)
 # accurate algorithm with the optimal choice of hyperparameters.
 #-------------------------------------------------------------------------------
 
-# best_theta = None # Your code here
-# wordlist   = [word for (idx, word) in sorted(zip(dictionary.values(), dictionary.keys()))]
-# sorted_word_features = utils.most_explanatory_word(best_theta, wordlist)
-# print("Most Explanatory Word Features")
-# print(sorted_word_features[:10])
+best_theta = p1.pegasos(train_bow_features, train_labels, 25, 0.0100)[0]
+wordlist = [word for (idx, word) in sorted(zip(dictionary.values(), dictionary.keys()))]
+sorted_word_features = utils.most_explanatory_word(best_theta, wordlist)
+print("Most Explanatory Word Features")
+print(sorted_word_features[:10])
