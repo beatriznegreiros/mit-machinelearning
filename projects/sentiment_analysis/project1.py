@@ -280,7 +280,9 @@ def classify(feature_matrix, theta, theta_0):
     be considered a positive classification.
     """
     # Your code here
-    raise NotImplementedError
+    predictions = np.dot(feature_matrix, theta)+theta_0
+    map_neg_pos = np.vectorize(lambda x: 1 if x > 0 else -1)
+    return map_neg_pos(predictions)
 
 
 def classifier_accuracy(
