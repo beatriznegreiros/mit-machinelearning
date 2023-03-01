@@ -19,6 +19,7 @@ def augment_feature_vector(X):
     column_of_ones = np.zeros([len(X), 1]) + 1
     return np.hstack((column_of_ones, X))
 
+
 def compute_probabilities(X, theta, temp_parameter):
     """
     Computes, for each datapoint X[i], the probability that X[i] is labeled as j
@@ -32,7 +33,30 @@ def compute_probabilities(X, theta, temp_parameter):
         H - (k, n) NumPy array, where each entry H[j][i] is the probability that X[i] is labeled as j
     """
     #YOUR CODE HERE
-    raise NotImplementedError
+    # Computing the fixed amount c=max_j(theta_j*x/temp)
+    exp_0 = np.dot(theta, X.T)/temp_parameter
+
+    # Get maximum value per column (per model, theta)
+    c = np.max(exp_0, axis=0)
+
+    # Create matrix to perform matricial operations instead of looping through matrices
+    c_matrix = np.zeros(shape=(theta.shape[0], X.shape[0]))
+    for index, value in enumerate(c):
+        c_matrix[:, index] = value
+
+    # Initialize H to zero
+    H = np.zeros(shape=(theta.shape[0], X.shape[0]))
+
+    # Initialize exponent 2d matrix (without weighting by sums)
+    exp_matrix = np.exp(np.dot(theta, X.T) / temp_parameter - c_matrix)
+
+    # Weight the exponent matrix by the sums and assign it to corresponding col in H
+    for col_i, column in enumerate(exp_matrix.T): # .T otherwise we would iterate through rows instead of cols
+        # Compute sum_j=1 to k-1 of the exponent matrix,
+        sum = column.sum()
+        H[:, col_i] = 1/sum * exp_matrix[:, col_i]
+    return H
+
 
 def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     """
