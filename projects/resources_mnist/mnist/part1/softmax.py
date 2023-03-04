@@ -105,7 +105,17 @@ def run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_param
         theta - (k, d) NumPy array that is the final value of parameters theta
     """
     # YOUR CODE HERE
-    raise NotImplementedError
+    n = X.shape[0]
+    k = theta.shape[0]
+    sparse_matrix = sparse.coo_matrix(([1] * n, (Y, range(n))), shape=(k, n)).toarray()
+    cost_func = compute_cost_function(X, Y, theta, lambda_factor, temp_parameter)
+    p_all = compute_probabilities(X, theta, temp_parameter)
+    subtraction = sparse_matrix-p_all
+    sum_term = np.dot(subtraction, X)
+    sum_term_mean = 1/n*sum_term
+    deriv_mtrix_mul = -1/temp_parameter*sum_term_mean+lambda_factor*theta
+    updt = alpha*deriv_mtrix_mul*cost_func
+    return theta - updt
 
 
 def update_y(train_y, test_y):
