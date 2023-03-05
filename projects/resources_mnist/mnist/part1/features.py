@@ -9,8 +9,7 @@ def project_onto_PC(X, pcs, n_components, feature_means):
     has been projected onto the first n_components principcal components.
     """
     # TODO: first center data using the feature_means
-    feat_expand = np.repeat([feature_means], [X.shape[0]], axis=0)
-    X_c = np.divide(X, feat_expand)
+    X_c = X - feature_means
 
     # TODO: Return the projection of the centered dataset
     #       on the first n_components principal components.
