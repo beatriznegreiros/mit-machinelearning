@@ -16,7 +16,7 @@ pcs = principal_components(train_x_centered)
 train_pca = project_onto_PC(train_x, pcs, n_components, feature_means)
 test_pca = project_onto_PC(test_x, pcs, n_components, feature_means)
 
-model = SVC(random_state=0, kernel='poly', degree=3)
+model = SVC(random_state=0, kernel='rbf')
 model.fit(train_pca, train_y)
 pred_test = model.predict(test_pca)
 test_error = compute_test_error_svm(test_y, pred_test)
