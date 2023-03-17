@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 Wmatrix = np.array([[1, 0, -1], [0, 1, -1], [-1, 0, -1], [0, -1, -1]])
 
@@ -24,3 +26,18 @@ exp_f_u = softmax_vec(f_u)
 output = exp_f_u/np.sum(exp_f_u)
 
 print(output)
+fig, ax = plt.subplots()
+
+for index, unit in enumerate(Wmatrix):
+    x1 = np.arange(-3, 3, 0.1)
+    if unit[1] != 0:
+        x2 = (- unit[0]*x1 - unit[2])/unit[1]
+        plt.plot(x1, x2)
+    else:
+        x1 = -unit[2]/unit[0]
+        x2 = np.arange(-3, 3, 0.1)
+        x1 = np.zeros(shape=x2.shape) + x1
+        plt.plot(x1, x2)
+
+plt.grid()
+plt.show()

@@ -13,7 +13,7 @@ ct = 0
 bias = np.array([-100, 100, 0])
 
 
-X = np.array([0, 0, 1, 1, 1, 0])
+X = np.array([1, 1, 0, 1, 1])
 
 ht_history = []
 
