@@ -95,41 +95,40 @@ class NeuralNetwork():
         print(self.hidden_to_output_weights)
         print(self.biases)
 
-    # def predict(self, x1, x2):
-    #
-    #     input_values = np.matrix([[x1],[x2]])
-    #
-    #     # Compute output for a single input(should be same as the forward propagation in training)
-    #     hidden_layer_weighted_input = # TODO
-    #     hidden_layer_activation = # TODO
-    #     output = # TODO
-    #     activated_output = # TODO
-    #
-    #     return activated_output.item()
-    #
-    # # Run this to train your neural network once you complete the train method
-    # def train_neural_network(self):
-    #
-    #     for epoch in range(self.epochs_to_train):
-    #         for x,y in self.training_points:
-    #             self.train(x[0], x[1], y)
-    #
-    # # Run this to test your neural network implementation for correctness after it is trained
-    # def test_neural_network(self):
-    #
-    #     for point in self.testing_points:
-    #         print("Point,", point, "Prediction,", self.predict(point[0], point[1]))
-    #         if abs(self.predict(point[0], point[1]) - 7*point[0]) < 0.1:
-    #             print("Test Passed")
-    #         else:
-    #             print("Point ", point[0], point[1], " failed to be predicted correctly.")
-    #             return
+    def predict(self, x1, x2):
+
+        input_values = np.matrix([[x1],[x2]])
+
+        # Compute output for a single input(should be same as the forward propagation in training)
+        hidden_layer_weighted_input = self.input_to_hidden_weights * input_values + self.biases
+        func_act = np.vectorize(rectified_linear_unit)
+        hidden_layer_activation = func_act(hidden_layer_weighted_input)
+        output = self.hidden_to_output_weights * hidden_layer_activation
+        activated_output = output_layer_activation(output)
+
+        return activated_output.item()
+
+    # Run this to train your neural network once you complete the train method
+    def train_neural_network(self):
+
+        for epoch in range(self.epochs_to_train):
+            for x,y in self.training_points:
+                self.train(x[0], x[1], y)
+
+    # Run this to test your neural network implementation for correctness after it is trained
+    def test_neural_network(self):
+
+        for point in self.testing_points:
+            print("Point,", point, "Prediction,", self.predict(point[0], point[1]))
+            if abs(self.predict(point[0], point[1]) - 7*point[0]) < 0.1:
+                print("Test Passed")
+            else:
+                print("Point ", point[0], point[1], " failed to be predicted correctly.")
+                return
 
 x = NeuralNetwork()
 
-x.train(9, 7, 16)
-
-# x.train_neural_network()
+x.train_neural_network()
 
 # UNCOMMENT THE LINE BELOW TO TEST YOUR NEURAL NETWORK
-# x.test_neural_network()
+x.test_neural_network()
