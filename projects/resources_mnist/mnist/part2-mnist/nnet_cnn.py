@@ -50,7 +50,7 @@ def main():
               nn.ReLU(),
               nn.MaxPool2d((2, 2)),
               nn.Flatten(),
-              nn.Linear(1600, 128),
+              nn.Linear(1600, 128),  # [(W−K+2P)/S]+1 =(64-3+0)/1 + 1=62
               nn.Dropout(p=0.5),
               nn.Linear(128, 10)
             )
